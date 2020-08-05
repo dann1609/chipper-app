@@ -7,17 +7,20 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StatusBar} from 'react-native';
+import {Provider} from 'react-redux';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 
 import AppNavigator from './src/config/navigators/appNavigator';
+import store from './src/config/store';
 
 const App: () => React$Node = () => {
   return (
-    <NavigationContainer>
-      <AppNavigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 };
 
