@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {ScrollView, FlatList} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {FlatList, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
 
 import listStyles from './listStyle';
@@ -10,9 +10,19 @@ import Environments from '../../config/environments';
 const ListScreen = (props) => {
   const {dispatch, posts, postType, navigation} = props;
 
+  const [refreshing, setRefreshing] = useState(true);
+
   useEffect(() => {
-    dispatch(getRedditPosts(postType));
-  }, []);
+    if (refreshing) {
+      dispatch(getRedditPosts(postType)).then(() => {
+        setRefreshing(false);
+      });
+    }
+  }, [refreshing]);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+  };
 
   const renderPost = ({item}) => (
     <PostCard
@@ -34,6 +44,9 @@ const ListScreen = (props) => {
       style={[listStyles.scene]}
       data={getPostData()}
       renderItem={renderPost}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
     />
   );
 };
