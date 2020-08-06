@@ -24,11 +24,20 @@ const PostCard = (props) => {
         <View style={postCardStyles.textContainer}>
           <Text style={postCardStyles.title}>{title}</Text>
           <View style={postCardStyles.minorInfoContainer}>
-            <Text style={postCardStyles.minorInfo}>{author_fullname}</Text>
-            <Text style={postCardStyles.minorInfo}>{num_comments}</Text>
-            <Text style={postCardStyles.minorInfo}>{score}</Text>
+            <Text
+              style={
+                postCardStyles.minorInfo
+              }>{`Author:\n${author_fullname}`}</Text>
+            <Text
+              style={
+                postCardStyles.minorInfo
+              }>{`Comments:\n${num_comments}`}</Text>
+            <Text style={postCardStyles.minorInfo}>{`Score:\n${score}`}</Text>
           </View>
-          <Text>{formatedCreated}</Text>
+          <View style={postCardStyles.dateContainer}>
+            <Text>Created:</Text>
+            <Text>{formatedCreated}</Text>
+          </View>
         </View>
       </View>
     </TouchableHighlight>

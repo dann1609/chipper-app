@@ -30,6 +30,11 @@ const postCardStyles = StyleSheet.create({
     flex: 1,
     fontSize: 12,
   },
+  dateContainer: {
+    flexDirection: 'row',
+    paddingTop: 10,
+    justifyContent: 'space-between',
+  },
 });
 
 export default postCardStyles;

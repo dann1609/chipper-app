@@ -24,6 +24,8 @@ const ListScreen = (props) => {
     setRefreshing(true);
   };
 
+  const loadMoreContent = () => {};
+
   const renderPost = ({item}) => (
     <PostCard
       post={item.data}
@@ -47,6 +49,7 @@ const ListScreen = (props) => {
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
+      onEndReached={loadMoreContent}
     />
   );
 };
