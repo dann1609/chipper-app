@@ -2,9 +2,10 @@ import Environments from '../config/environments';
 import {postsTypes} from '../reducers/posts';
 
 export default {
-  getRedditPosts: function (postType) {
+  getRedditPosts: function (postType, after) {
     let type = postType || Environments.NEW;
-    const redditPostsUrl = `${Environments.BASE}${Environments.POST_BASE}${type}`;
+    let afterParams = after ? `?count=25&after=${after}` : '';
+    const redditPostsUrl = `${Environments.BASE}${Environments.POST_BASE}${type}${afterParams}`;
     //console.log(redditPostsUrl);
     return fetch(redditPostsUrl, {
       method: 'GET',

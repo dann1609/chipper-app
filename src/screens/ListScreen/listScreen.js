@@ -3,7 +3,7 @@ import {FlatList, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
 
 import listStyles from './listStyle';
-import {getRedditPosts} from '../../actions/reddit';
+import {getNextRedditPosts, getRedditPosts} from '../../actions/reddit';
 import PostCard from '../../components/PostCard/PostCard';
 import Environments from '../../config/environments';
 
@@ -24,7 +24,9 @@ const ListScreen = (props) => {
     setRefreshing(true);
   };
 
-  const loadMoreContent = () => {};
+  const loadMoreContent = () => {
+    dispatch(getNextRedditPosts(postType));
+  };
 
   const renderPost = ({item}) => (
     <PostCard
@@ -43,7 +45,8 @@ const ListScreen = (props) => {
 
   return (
     <FlatList
-      style={[listStyles.scene]}
+      style={listStyles.scene}
+      contentContainerStyle={listStyles.listContainers}
       data={getPostData()}
       renderItem={renderPost}
       refreshControl={

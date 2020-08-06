@@ -1,5 +1,7 @@
 export const postsActions = {
+  SET_AFTER: 'SET_AFTER',
   SET_POSTS: 'SET_POSTS',
+  ADD_POSTS: 'ADD_POSTS',
 };
 
 export const postsTypes = {
@@ -19,8 +21,15 @@ export const posts = (
   action,
 ) => {
   switch (action.type) {
+    case postsActions.SET_AFTER:
+      return {...state, ...{[action.afterPostType]: action.afterId}};
     case postsActions.SET_POSTS:
       return {...state, ...{[action.postType]: action.list}};
+    case postsActions.ADD_POSTS:
+      return {
+        ...state,
+        ...{[action.postType]: state[action.postType].concat(action.list)},
+      };
     default:
       return state;
   }
