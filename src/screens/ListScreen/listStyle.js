@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import color from '../../common/color';
 
 const listStyles = StyleSheet.create({
   scene: {
@@ -6,6 +7,7 @@ const listStyles = StyleSheet.create({
   },
   listContainers: {
     paddingBottom: 25,
+    backgroundColor: color.white,
   },
 });
 

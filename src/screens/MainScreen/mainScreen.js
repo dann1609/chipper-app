@@ -1,8 +1,11 @@
 import * as React from 'react';
 import {Dimensions} from 'react-native';
-import {TabView} from 'react-native-tab-view';
+import {TabView, TabBar} from 'react-native-tab-view';
+
+import mainStyles from './mainStyle';
 import ListScreen from '../ListScreen/listScreen';
 import {postsTypes} from '../../reducers/posts';
+import color from '../../common/color';
 
 const initialLayout = {width: Dimensions.get('window').width};
 
@@ -35,10 +38,21 @@ function MainScreen(props) {
     }
   };
 
+  const renderTabBar = (props) => (
+    <TabBar
+      {...props}
+      indicatorStyle={mainStyles.indicatorStyle}
+      style={mainStyles.tabBarStyle}
+      activeColor={color.orange}
+      inactiveColor={color.orange}
+    />
+  );
+
   return (
     <TabView
       navigationState={{index, routes}}
       renderScene={renderScene}
+      renderTabBar={renderTabBar}
       onIndexChange={setIndex}
       initialLayout={initialLayout}
     />
