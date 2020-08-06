@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView, FlatList} from 'react-native';
 import {connect} from 'react-redux';
 
 import listStyles from './listStyle';
@@ -14,20 +14,28 @@ const ListScreen = (props) => {
     dispatch(getRedditPosts(postType));
   }, []);
 
-  const renderPosts = () => {
-    return posts[postType].map((post) => (
-      <PostCard
-        post={post.data}
-        onPress={() =>
-          navigation.navigate('details', {
-            link: `${Environments.WEB_BASE}${post.data.permalink}`,
-          })
-        }
-      />
-    ));
+  const renderPost = ({item}) => (
+    <PostCard
+      post={item.data}
+      onPress={() =>
+        navigation.navigate('details', {
+          link: `${Environments.WEB_BASE}${item.data.permalink}`,
+        })
+      }
+    />
+  );
+
+  const getPostData = () => {
+    return posts[postType];
   };
 
-  return <ScrollView style={[listStyles.scene]}>{renderPosts()}</ScrollView>;
+  return (
+    <FlatList
+      style={[listStyles.scene]}
+      data={getPostData()}
+      renderItem={renderPost}
+    />
+  );
 };
 
 const mapStateToProps = (state) => ({
