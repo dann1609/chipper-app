@@ -1,12 +1,14 @@
 import * as React from 'react';
 import {Dimensions} from 'react-native';
-import {TabView, SceneMap} from 'react-native-tab-view';
+import {TabView} from 'react-native-tab-view';
 import ListScreen from '../ListScreen/listScreen';
 import {postsTypes} from '../../reducers/posts';
 
 const initialLayout = {width: Dimensions.get('window').width};
 
-function MainScreen() {
+function MainScreen(props) {
+  const {navigation} = props;
+
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     {key: 'new', title: 'New'},
@@ -18,13 +20,18 @@ function MainScreen() {
   const renderScene = ({route}) => {
     switch (route.key) {
       case 'new':
-        return <ListScreen postType={postsTypes.NEW} />;
+        return <ListScreen navigation={navigation} postType={postsTypes.NEW} />;
       case 'top':
-        return <ListScreen postType={postsTypes.TOP} />;
+        return <ListScreen navigation={navigation} postType={postsTypes.TOP} />;
       case 'controversial':
-        return <ListScreen postType={postsTypes.CONTROVERSIAL} />;
+        return (
+          <ListScreen
+            navigation={navigation}
+            postType={postsTypes.CONTROVERSIAL}
+          />
+        );
       case 'hot':
-        return <ListScreen postType={postsTypes.HOT} />;
+        return <ListScreen navigation={navigation} postType={postsTypes.HOT} />;
     }
   };
 

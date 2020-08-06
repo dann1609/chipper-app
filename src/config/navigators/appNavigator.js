@@ -4,6 +4,7 @@ import {View, Text} from 'react-native';
 
 import MainScreen from '../../screens/MainScreen/mainScreen';
 import color from '../../common/color';
+import DetailsScreen from '../../screens/DetailsScreen/detailsScreen';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ function AppNavigator() {
         },
       }}>
       <Stack.Screen name="Reddit" component={MainScreen} />
+      <Stack.Screen name="details" component={DetailsScreen} />
     </Stack.Navigator>
   );
 }
