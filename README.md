@@ -12,4 +12,4 @@ This project use npm but you also could use yarn.
 
 1. Run `npm install`
 2. Run `npx pod-install ios` 
-3. Run `npn run ios` to run app into an ios simulator. 
+3. Run `npm run ios` to run app into an ios simulator or `npm run android` to run app into android simulator. 
