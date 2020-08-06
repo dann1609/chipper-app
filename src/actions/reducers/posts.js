@@ -1,8 +1,9 @@
-import {postsType} from '../../reducers/posts';
+import {postsActions, postsTypes} from '../../reducers/posts';
 
-export const setPosts = (postsList) => {
+export const setPosts = (postsList, postType) => {
   return {
-    type: postsType.SET_POSTS,
+    type: postsActions.SET_POSTS,
     list: postsList,
+    postType,
   };
 };

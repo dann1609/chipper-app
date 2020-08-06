@@ -1,8 +1,10 @@
 import Environments from '../config/environments';
+import {postsTypes} from '../reducers/posts';
 
 export default {
-  getRedditPosts: function () {
-    const redditPostsUrl = `${Environments.BASE}${Environments.POST_BASE}${Environments.HOT}`;
+  getRedditPosts: function (postType) {
+    let type = postType || Environments.NEW;
+    const redditPostsUrl = `${Environments.BASE}${Environments.POST_BASE}${type}`;
     //console.log(redditPostsUrl);
     return fetch(redditPostsUrl, {
       method: 'GET',

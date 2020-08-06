@@ -1,16 +1,26 @@
-export const postsType = {
+export const postsActions = {
   SET_POSTS: 'SET_POSTS',
+};
+
+export const postsTypes = {
+  HOT: 'hot',
+  NEW: 'new',
+  CONTROVERSIAL: 'controversial',
+  TOP: 'top',
 };
 
 export const posts = (
   state = {
-    list: [],
+    [postsTypes.HOT]: [],
+    [postsTypes.NEW]: [],
+    [postsTypes.CONTROVERSIAL]: [],
+    [postsTypes.TOP]: [],
   },
   action,
 ) => {
   switch (action.type) {
-    case postsType.SET_POSTS:
-      return {...state, ...action.list};
+    case postsActions.SET_POSTS:
+      return {...state, ...{[action.postType]: action.list}};
     default:
       return state;
   }
