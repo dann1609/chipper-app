@@ -9,3 +9,7 @@ Please refer the [React Native docs Getting Started guide](https://reactnative.d
 ### This Project
 
 This project use npm but you also could use yarn.
+
+1. Run `npm install`
+2. Run `npx pod-install ios` 
+3. Run `npn run ios` to run app into an ios simulator. 
